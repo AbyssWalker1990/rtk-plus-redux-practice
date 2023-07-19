@@ -8,6 +8,7 @@ import { useUpdatePostMutation, useDeletePostMutation } from './postsSlice'
 
 const EditPostForm = () => {
   const { postId } = useParams()
+  console.log('postId: ', postId)
   const navigate = useNavigate()
 
   const [updatePost, { isLoading }] = useUpdatePostMutation()
@@ -38,7 +39,7 @@ const EditPostForm = () => {
   const onSavePostClicked = async () => {
     if (canSave) {
       try {
-        await updatePost({ title, body: content, userId }).unwrap()
+        await updatePost({ title, body: content, id: postId }).unwrap()
 
         setTitle('')
         setContent('')
